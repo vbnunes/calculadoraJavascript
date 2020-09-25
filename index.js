@@ -1,69 +1,67 @@
 const readline = require('readline-sync');
 
-while (true) {
+let option = 1
+let values = []
+let value = 4
+
+while (option != 9) {
   displayInfo()
-  let option = readline.question('Option: ');
+  option = readline.question('Option: ');
 
   console.log(`Selected operation: ${option}`);
 
-  
-// validando se input é número
-  if (isNaN(option)) {   
-    console.error('please input a number');
+  // validando se input é número
+  if (isNaN(option)) {
+    console.error('Please input a number');
     continue;
   }
-  
-// opções com apenas 1 input têm função diferente
-  if (option === '5') {
-    var value = sqrtInput(); 
-  }
-
-  else {
-    var values = getInput();
-  }
-
+   
   switch(option) {
-    case '1': 
-      let addition = parseFloat(values[0]) + parseFloat(values[1]);
-      console.log(`Result: ${addition}`);
-    break;
+    case '1':
+      multiInputs();
+      console.log(`Result: ${addition()}`);
+      break;
 
     case '2':
-      let subtraction = parseFloat(values[0]) - parseFloat(values[1]);
-      console.log(`Result: ${subtraction}`);
-    break;
+      multiInputs();
+      console.log(`Result: ${subtraction()}`);      
+      break;
 
     case '3':
-      let multiplication = parseFloat(values[0]) * parseFloat(values[1]);
-      console.log(`Result: ${multiplication}`);
-    break;
+      multiInputs();
+      console.log(`Result: ${multiplication()}`);
+      break;
 
     case '4':
-      let division = parseFloat(values[0]) / parseFloat(values[1]);
-      console.log(`Result: ${division}`);
-    break;
+      multiInputs();
+      console.log(`Result: ${division()}`);
+      break;
 
     case '5':
-      let sqrt = Math.sqrt(value);
-      console.log(`Result: ${sqrt}`);
-    break;
+      singleInput();
+      console.log(`Result: ${sqrt()}`);
+      break;
 
+    case '9':
+      console.log('Terminating...');
+      break;
     
     default:
       console.error('Please select a valid operation');
   }
 }
 
-function getInputs() {
-  let value1 = readline.questionFloat('value 1: \n');
-  let value2 = readline.questionFloat('value 2: \n');
+function multiInputs() {
+  let value1 = readline.questionFloat('Input value 1: \n');
+  let value2 = readline.questionFloat('Input value 2: \n');
+  values = [value1, value2];
   
-  return [value1, value2];
+  return values;
 }
 
-function sqrtInput() {
-  let sqrtValue = readline.questionFloat('sqrt value: \n');
-  return sqrtValue;
+function singleInput() {
+  value = readline.questionFloat('Input value: \n');
+  return value;
 }
 
 function displayInfo() {
@@ -74,4 +72,24 @@ function displayInfo() {
   console.log('4. Division');
   console.log('5. Square root');
 
+}
+
+function addition() {
+  return parseFloat(values[0]) + parseFloat(values[1]);
+}
+
+function subtraction() {
+  return parseFloat(values[0]) - parseFloat(values[1]);
+}
+
+function multiplication() {
+  return parseFloat(values[0]) * parseFloat(values[1]);
+}
+
+function division() {
+  return parseFloat(values[0]) / parseFloat(values[1]);
+}
+
+function sqrt() {
+  return Math.sqrt(value);
 }
