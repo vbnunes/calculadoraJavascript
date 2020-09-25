@@ -36,8 +36,9 @@ if (isNaN(opcao)){ // NaN not a number
     break;
   case '5':
     numero1 = readline.question("Insira a base da raiz ");
-    raiz();
-
+    resultadoRaiz = Math.sqrt(numero1);
+    console.log(`Resultado da Raiz: ${resultadoRaiz}`);
+    break;
   case '9': // SAIDA DO PROGRAMA adicao
     console.log("Saindo do programa"); 
     break;
@@ -68,6 +69,6 @@ function displayInfo() {
 
 function raiz() {
   let resultadoRaiz = Math.sqrt(numero1);
-  resultadoRaiz = console.log(`Resultado da Raiz: ${resultadoRaiz}`);
+  console.log(`Resultado da Raiz: ${resultadoRaiz}`);
 
 }
